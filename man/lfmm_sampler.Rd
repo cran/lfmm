@@ -4,8 +4,18 @@
 \alias{lfmm_sampler}
 \title{LFMM generative data sampler}
 \usage{
-lfmm_sampler(n, p, K, outlier.prop, cs, sigma = 0.2, B.sd = 1,
-  B.mean = 0, U.sd = 1, V.sd = 1)
+lfmm_sampler(
+  n,
+  p,
+  K,
+  outlier.prop,
+  cs,
+  sigma = 0.2,
+  B.sd = 1,
+  B.mean = 0,
+  U.sd = 1,
+  V.sd = 1
+)
 }
 \arguments{
 \item{n}{number of observations.}
@@ -35,9 +45,8 @@ A list with simulated data.
 Simulate data from the latent factor model.
 }
 \details{
-\code{lfmm_sampler()} sample a response matrix Y and a primary variable X such that
-
-Y = U t(V) + X t(B) + Epsilon.
+\code{lfmm_sampler()} sample a response matrix Y and a primary variable X such that\preformatted{     Y = U t(V) + X t(B) + Epsilon.
+}
 
 U,V, B and Epsilon are simulated according to normal multivariate distributions.
 Moreover U and X are such that \code{cor(U[,i], X) = cs[i]}.

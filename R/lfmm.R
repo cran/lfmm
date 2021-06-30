@@ -108,75 +108,6 @@ lfmm_ridge <- function(Y, X, K, lambda = 1e-5, algorithm = "analytical",
   m
 }
 
-## Cross validation of LFMM estimates with ridge penalty
-##
-## This function splits the data set into a train set and a test set, and returns 
-## a prediction error. The function \code{\link{lfmm_ridge}} is run with the
-## train set and the prediction error is evaluated from the test set.
-##
-##
-## @param Y a response variable matrix with n rows and p columns. 
-## Each column corresponds to a distinct response variable (e.g., SNP genotype, 
-## gene expression level, beta-normalized methylation profile, etc).
-## Response variables must be encoded as numeric.
-## @param X an explanatory variable matrix with n rows and d columns. 
-## Each column corresponds to a distinct explanatory variable (eg. phenotype).
-## Explanatory variables must be encoded as numeric.
-## @param Ks a list of integer for the number of latent factors in the regression model.
-## @param lambdas a list of numeric values for the regularization parameter.
-## @param n.fold.row number of cross-validation folds along rows.
-## @param n.fold.col number of cross-validation folds along columns.
-## @return a dataframe containing prediction errors for all values of lambda and K
-## @details The response variable matrix Y and the explanatory variable are centered.
-##
-## @export
-## @author cayek, francoio
-## @examples
-## library(ggplot2)
-## library(lfmm)
-##
-## ## sample data
-## K <- 3
-##  dat <- lfmm_sampler(n = 100, p = 1000, K = K,
-##                      outlier.prop = 0.1,
-##                      cs = c(0.8),
-##                      sigma = 0.2,
-##                      B.sd = 1.0,
-##                      U.sd = 1.0,
-##                      V.sd = 1.0)
-##
-##  ## run cross validation
-##  errs <- lfmm_ridge_CV(Y = dat$Y,
-##                         X = dat$X,
-##                          n.fold.row = 5,
-##                          n.fold.col = 5,
-##                          lambdas = c(1e-10, 1, 1e20),
-##                          Ks = c(1,2,3,4,5,6))
-##
-##  ## plot error
-##  ggplot(errs, aes(y = err, x = as.factor(K))) +
-##    geom_boxplot() +
-##    facet_grid(lambda ~ ., scale = "free")
-##
-##  ggplot(errs, aes(y = err, x = as.factor(lambda))) +
-##    geom_boxplot() +
-##    facet_grid(K ~ ., scales = "free")
-##
-## @seealso \code{\link{lfmm_ridge}}
-# lfmm_ridge_CV <- function(Y, X, n.fold.row, n.fold.col, lambdas, Ks) {
-# 
-#   ## init
-#   lfmm <- lfmm::ridgeLFMM(K = NULL,
-#                           lambda = NULL)
-#   dat <- LfmmDat(Y = scale(Y, scale = FALSE), X = scale(X, scale = FALSE))
-# 
-#   ## run and return
-#   return(lfmm::lfmm_CV(m  = lfmm, dat = dat,
-#                        n.fold.row = n.fold.row,
-#                        n.fold.col = n.fold.col,
-#                        Ks = Ks,
-#                        lambdas = lambdas))
-# }
 
 
 ##'  LFMM least-squares estimates with lasso penalty (Sparse LFMM)
@@ -537,10 +468,11 @@ glm_test <- function(Y, X, lfmm.obj, calibrate = "gif",family = binomial(link = 
 ##' library(lfmm)
 ##'
 ##' ## Simulation of 1000 genotypes for 100 individuals (y)
-##' u <- matrix(rnorm(300, sd = 1), nrow = 100, ncol = 2) 
-##' v <- matrix(rnorm(3000, sd = 2), nrow = 2, ncol = 1000)
+##' u <- matrix(rnorm(300, sd = 1), nrow = 100, ncol = 3) 
+##' v <- matrix(rnorm(3000, sd = 3), nrow = 3, ncol = 1000)
+##' w <- u %*% v
 ##' y <- matrix(rbinom(100000, size = 2, 
-##'                   prob = 1/(1 + exp(-0.3*(u%*%v 
+##'                   prob = 1/(1 + exp(-0.3*(w
 ##'                   + rnorm(100000, sd = 2))))),
 ##'                   nrow = 100,
 ##'                   ncol = 1000)
@@ -620,10 +552,11 @@ effect_size <- function(Y, X, lfmm.object){
 ##' library(lfmm)
 ##'
 ##' ## Simulation of 1000 genotypes for 100 individuals (y)
-##' u <- matrix(rnorm(300, sd = 1), nrow = 100, ncol = 2) 
-##' v <- matrix(rnorm(3000, sd = 2), nrow = 2, ncol = 1000)
+##' u <- matrix(rnorm(300, sd = 1), nrow = 100, ncol = 3) 
+##' v <- matrix(rnorm(3000, sd = 3), nrow = 3, ncol = 1000)
+##' w <- u %*% v
 ##' y <- matrix(rbinom(100000, size = 2, 
-##'                   prob = 1/(1 + exp(-0.3*(u%*%v 
+##'                   prob = 1/(1 + exp(-0.3 * (w 
 ##'                   + rnorm(100000, sd = 2))))),
 ##'                   nrow = 100,
 ##'                   ncol = 1000)

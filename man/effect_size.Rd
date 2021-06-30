@@ -30,10 +30,11 @@ The response variable matrix Y and the explanatory variable are centered.
 library(lfmm)
 
 ## Simulation of 1000 genotypes for 100 individuals (y)
-u <- matrix(rnorm(300, sd = 1), nrow = 100, ncol = 2) 
-v <- matrix(rnorm(3000, sd = 2), nrow = 2, ncol = 1000)
+u <- matrix(rnorm(300, sd = 1), nrow = 100, ncol = 3) 
+v <- matrix(rnorm(3000, sd = 3), nrow = 3, ncol = 1000)
+w <- u \%*\% v
 y <- matrix(rbinom(100000, size = 2, 
-                  prob = 1/(1 + exp(-0.3*(u\%*\%v 
+                  prob = 1/(1 + exp(-0.3*(w
                   + rnorm(100000, sd = 2))))),
                   nrow = 100,
                   ncol = 1000)

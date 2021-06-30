@@ -4,7 +4,9 @@
 \name{skin.exposure}
 \alias{skin.exposure}
 \title{Simulated (and real) methylation levels for sun exposed patient patients}
-\format{A list with 6 arguments: beta.value, phenotype, causal.set, chrpos}
+\format{
+A list with 6 arguments: beta.value, phenotype, causal.set, chrpos
+}
 \usage{
 data("skin.exposure")
 }

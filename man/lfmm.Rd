@@ -3,7 +3,6 @@
 \docType{package}
 \name{lfmm}
 \alias{lfmm}
-\alias{lfmm-package}
 \title{R package : Fast and Accurate statistical methods for adjusting confounding factors
 in association studies.}
 \description{

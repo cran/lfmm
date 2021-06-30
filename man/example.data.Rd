@@ -4,7 +4,9 @@
 \name{example.data}
 \alias{example.data}
 \title{Genetic and phenotypic data for Arabidopsis thaliana}
-\format{A list with 4 arguments: genotype, phenotype, causal.set, chrpos}
+\format{
+A list with 4 arguments: genotype, phenotype, causal.set, chrpos
+}
 \usage{
 data(example.data)
 }

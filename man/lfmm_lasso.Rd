@@ -4,9 +4,17 @@
 \alias{lfmm_lasso}
 \title{LFMM least-squares estimates with lasso penalty (Sparse LFMM)}
 \usage{
-lfmm_lasso(Y, X, K, nozero.prop = 0.01, mu.num = 100,
-  mu.min.ratio = 0.01, mu = NULL, it.max = 100,
-  relative.err.epsilon = 1e-06)
+lfmm_lasso(
+  Y,
+  X,
+  K,
+  nozero.prop = 0.01,
+  mu.num = 100,
+  mu.min.ratio = 0.01,
+  mu = NULL,
+  it.max = 100,
+  relative.err.epsilon = 1e-06
+)
 }
 \arguments{
 \item{Y}{a response variable matrix with n rows and p columns.

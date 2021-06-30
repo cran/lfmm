@@ -4,8 +4,7 @@
 \alias{glm_test}
 \title{GLM tests with latent factor mixed models}
 \usage{
-glm_test(Y, X, lfmm.obj, calibrate = "gif", family = binomial(link =
-  "logit"))
+glm_test(Y, X, lfmm.obj, calibrate = "gif", family = binomial(link = "logit"))
 }
 \arguments{
 \item{Y}{a response variable matrix with n rows and p columns.

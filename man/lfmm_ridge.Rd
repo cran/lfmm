@@ -4,8 +4,15 @@
 \alias{lfmm_ridge}
 \title{LFMM least-squares estimates with ridge penalty}
 \usage{
-lfmm_ridge(Y, X, K, lambda = 1e-05, algorithm = "analytical",
-  it.max = 100, relative.err.min = 1e-06)
+lfmm_ridge(
+  Y,
+  X,
+  K,
+  lambda = 1e-05,
+  algorithm = "analytical",
+  it.max = 100,
+  relative.err.min = 1e-06
+)
 }
 \arguments{
 \item{Y}{a response variable matrix with n rows and p columns.
